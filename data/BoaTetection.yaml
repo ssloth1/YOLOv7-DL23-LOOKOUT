@@ -1,5 +1,6 @@
-train: C:\Users\ben93\Downloads\CombinedDatasetsChallenge\CombinedDatasetsChallenge\images\train
-val: C:\Users\ben93\Downloads\CombinedDatasetsChallenge\CombinedDatasetsChallenge\images\val
-test: C:\Users\ben93\Downloads\CombinedDatasetsChallenge\CombinedDatasetsChallenge\images\val
-nc: 2
-names: ['boat', 'other']
+train: /courses/CS5330.202450/students/bebarski.j/project/Compressed/images/train
+val: /courses/CS5330.202450/students/bebarski.j/project/Compressed/images/val
+test: /courses/CS5330.202450/students/bebarski.j/project/Compressed/images/test
+
+nc: 6
+names: ['ignored', 'swimmer', 'boat', 'jetski', 'life_saving_appliances', 'buoy']
