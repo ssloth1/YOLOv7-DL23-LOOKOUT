@@ -1,4 +1,4 @@
-See WandB reports for details. 
+See WandB reports for details. These are just quick notes.
 
 Casper v0.1:
 Command - /courses/CS5330.202450/students/bebarski.j/project/YOLOv7-DL23-LOOKOUT/train.py --data data/BoaTetection.yaml --cfg cfg/training/yolo7casper.yaml --weights DL23/DL2311/weights/best.pt --name DL23 --hyp data/hyp.scratch.exp3combined.yaml --project DL23 --epochs 40
