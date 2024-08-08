@@ -1,0 +1,39 @@
+See WandB reports for details. 
+
+Casper v0.1:
+Command - /courses/CS5330.202450/students/bebarski.j/project/YOLOv7-DL23-LOOKOUT/train.py --data data/BoaTetection.yaml --cfg cfg/training/yolo7casper.yaml --weights DL23/DL2311/weights/best.pt --name DL23 --hyp data/hyp.scratch.exp3combined.yaml --project DL23 --epochs 40
+Not sure if this will be good or not, but added even more GhostConv Layers, replacing other Conv layers. This should further reduce parameter size to 33958854 (about 8.76% reduction of the original). 
+
+Ghost v0.2:
+Command - /courses/CS5330.202450/students/bebarski.j/project/YOLOv7-DL23-LOOKOUT/train.py --data data/BoaTetection.yaml --cfg cfg/training/yolo7ghost.yaml --weights DL23/DL2311/weights/best.pt --name DL23 --hyp data/hyp.scratch.exp3combined.yaml --project DL23 --epochs 40
+
+This is an additional run of the yolo7ghost model, using the best weights from the previous Ghost 0.1v run. and the same parameters from experiment 3 (weight decay adjustments and box loss adjustments + augmentation). 
+
+Ghost v0.1:
+/courses/CS5330.202450/students/bebarski.j/project/YOLOv7-DL23-LOOKOUT/train.py --data data/BoaTetection.yaml --cfg cfg/training/yolo7ghost.yaml --weights combined.pt --name DL23 --hyp data/hyp.scratch.exp3combined.yaml --project DL23 --epochs 40
+This is the first real attempt at running the yolo7ghost model. From what I've read, GhostConv layers can provide some better efficiency, and a lower computational load than standard convolutional layers. At the time of writing this I have no reason to believe that this will perform better than the standard yolo7 model, but it will definitely be slightly smaller in parameter size. 35,840,934 parameters in this run vs 37,221,635 in the standard yolo7 runs, which is about 3.71% smaller. 
+
+Yolo-Cool (Smaller Anchors): 
+/courses/CS5330.202450/students/bebarski.j/project/YOLOv7-DL23-LOOKOUT/train.py --data data/BoaTetection.yaml --cfg cfg/training/yolo7cool.yaml --weights combined.pt --name DL23 --hyp data/hyp.scratch.smaller.yaml --project DL23 --epochs 40
+I learned that smaller anchors set in the model might be able to help the detect objects that are smaller like swimmers and buoys or lifesaving class. We will see how this performs. 
+- Update it did not perform well. I probably won't pursue this any more. 
+
+Combined w/Weights:
+/courses/CS5330.202450/students/bebarski.j/project/YOLOv7-DL23-LOOKOUT/train.py --data data/BoaTetection.yaml --weights combined.pt --name DL23 --hyp data/hyp.scratch.exp3combined.yaml --project DL23 --epochs 40
+This uses the combined hyper parameters from Exp 1 and 2, but is ran again with the best weights from the original run. 
+
+Exp 1+2 Combined:
+/courses/CS5330.202450/students/bebarski.j/project/YOLOv7-DL23/train.py --data data/BoaTetection.yaml --weights yolov7.pt --name DL23 --hyp data/hyp.scratch.exp3combined.yaml --project DL23 --epochs 40
+This uses the combined hyper parameters from experiment 1 and 2. 
+
+Experiment 1: 
+/courses/CS5330.202450/students/bebarski.j/project/YOLOv7-DL23/train.py --data data/BoaTetection.yaml --weights yolov7.pt --name DL23 --hyp data/hyp.scratch.custom.yaml --project DL23 --epochs 40
+Uses hyperparameters from in data/hyp.exp1.yaml there are some box loss and iou adjustments, 
+
+Experiment 2 - Augmentation:
+/courses/CS5330.202450/students/bebarski.j/project/YOLOv7-DL23/train.py --data data/BoaTetection.yaml --weights yolov7.pt --name DL23 --hyp data/hyp.scratch.aug.yaml --project DL23 --epochs 40
+Uses hyperparameters from data/hyp.exp2.yaml, which contains data augmentation parameters.
+
+Baseline Run:
+Ran the default code at 20 epochs to establish a baseline and ensure code was working. 
+
