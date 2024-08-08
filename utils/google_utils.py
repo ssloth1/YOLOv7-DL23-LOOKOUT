@@ -15,20 +15,25 @@ def gsutil_getsize(url=''):
     s = subprocess.check_output(f'gsutil du {url}', shell=True).decode('utf-8')
     return eval(s.split(' ')[0]) if len(s) else 0  # bytes
 
-
 def attempt_download(file, repo='WongKinYiu/yolov7'):
-    # Attempt file download if does not exist
+    # Attempt file download if it does not exist
     file = Path(str(file).strip().replace("'", ''))
 
     if not file.exists():
         try:
-            response = requests.get(f'https://api.github.com/repos/{repo}/releases/latest').json()  # github api
-            assets = [x['name'] for x in response['assets']]  # release assets
-            tag = response['tag_name']  # i.e. 'v1.0'
-        except:  # fallback plan
+            response = requests.get(f'https://api.github.com/repos/{repo}/releases/latest').json()  # GitHub API
+            assets = [x['name'] for x in response.get('assets', [])]  # release assets
+            tag = response.get('tag_name', '')  # i.e., 'v1.0'
+        except requests.RequestException as e:  # fallback plan
+            print(f"Error fetching release info: {e}")
             assets = ['yolov7.pt', 'yolov7-tiny.pt', 'yolov7x.pt', 'yolov7-d6.pt', 'yolov7-e6.pt', 
                       'yolov7-e6e.pt', 'yolov7-w6.pt']
-            tag = subprocess.check_output('git tag', shell=True).decode().split()[-1]
+            try:
+                tags = subprocess.check_output('git tag', shell=True).decode().split()
+                tag = tags[-1] if tags else 'latest'
+            except subprocess.CalledProcessError as e:
+                print(f"Error fetching git tags: {e}")
+                tag = 'latest'
 
         name = file.name
         if name in assets:
@@ -51,7 +56,6 @@ def attempt_download(file, repo='WongKinYiu/yolov7'):
                     print(f'ERROR: Download failure: {msg}')
                 print('')
                 return
-
 
 def gdrive_download(id='', file='tmp.zip'):
     # Downloads a file from Google Drive. from yolov7.utils.google_utils import *; gdrive_download()
