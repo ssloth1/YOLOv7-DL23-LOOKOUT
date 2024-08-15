@@ -11,3 +11,6 @@ In collaboration with Lookout, a company focused on maritime safety, we develope
 - **Optimized for Maritime Environments**: Tuned specifically for maritime object detection, including classes like boats, jet skis, swimmers, buoys, and lifesaving appliances.
 - **Hyperparameter Tuning**: Includes optimized hyperparameters that improve model stability and performance across different training runs.
 - **Lightweight Deployment**: Designed for deployment in resource-constrained environments, making it suitable for smaller vessels and cost-effective applications.
+
+1. James Bebarski and David Getchell, "Efficient Maritime Object Detection: YOLOv7 Tuning and Ghost Convolution Integration," Roux Institute at Northeastern University, Portland, Maine, USA. [Link to paper]([https://example.com](https://github.com/ssloth1/YOLOv7-DL23-LOOKOUT/blob/main/Efficient%20Maritime%20Object%20Detection%20-%20YOLOv7%20Tuning%20and%20Ghost%20Convolution%20Integration%20by%20James%20Bebarski%20and%20David%20Getchell.pdf)).
+
